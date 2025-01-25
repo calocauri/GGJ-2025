@@ -1,7 +1,40 @@
-[gd_scene format=3 uid="uid://g5bdyn31k1qh"]
+[gd_scene load_steps=7 format=3 uid="uid://g5bdyn31k1qh"]
+
+[ext_resource type="ArrayMesh" uid="uid://dtrswbldyhl2s" path="res://modelos/Platano V.1.obj" id="1_kh6bd"]
+[ext_resource type="ArrayMesh" uid="uid://dt6g7ax4y7418" path="res://modelos/barril.obj" id="2_espbr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_68jh8"]
+
+[sub_resource type="Sky" id="Sky_ajkpp"]
+sky_material = SubResource("ProceduralSkyMaterial_68jh8")
+
+[sub_resource type="Environment" id="Environment_7sy4k"]
+background_mode = 2
+sky = SubResource("Sky_ajkpp")
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_lh0kl"]
+dof_blur_far_enabled = true
+dof_blur_near_enabled = true
 
 [node name="main" type="Node3D"]
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598846, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.54461, -9.07001)
+mesh = ExtResource("1_kh6bd")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55044, -1.57573, -9.07001)
+mesh = ExtResource("2_espbr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.336734, 0.890605, -0.305669, 0, 0.324627, 0.945842, 0.9416, 0.318497, -0.109313, -5.17773, 1.49891, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7sy4k")
+camera_attributes = SubResource("CameraAttributesPractical_lh0kl")
